@@ -4,11 +4,9 @@
 <div class="card">
    <div class="card-body">
       <div class="my-3 text-center">
-         <h4>
-            {{ title }}
-         </h4>
+         <h4>{{ client.id ? 'Editar' : 'Agregar' }} Cliente</h4>
       </div>
-      <form (ngSubmit)="create()">
+      <form (ngSubmit)="onSubmitForm()">
          <div class="form-row">
             <div class="form-group col-md-6">
                <label for="names">Nombres</label>
@@ -42,7 +40,9 @@
                [(ngModel)]="client.email"
             />
          </div>
-         <button type="submit" class="btn btn-primary">Agregar Cliente</button>
+         <button type="submit" [class.btn-warning]="client.id" class="btn btn-primary">
+            {{ client.id ? 'Editar' : 'Agregar' }} Cliente
+         </button>
       </form>
    </div>
 </div>

@@ -1,29 +1,64 @@
-<div class="my-3 text-left">
-   <button [routerLink]="['/clients/create']" type="button" class="btn btn-primary">
-      Agregar cliente
-   </button>
+<div class="row">
+   <div class="col-6">
+      <div class="my-3 text-left">
+         <button [routerLink]="['/clients/create']" type="button" class="btn btn-success">
+            Agregar cliente
+         </button>
+      </div>
+   </div>
+   <div class="col-6">
+      <div class="my-3 text-center">
+         <button (click)="list()" type="button" class="btn btn-primary">Recargar</button>
+      </div>
+   </div>
 </div>
 <div class="card">
    <div class="card-body">
-      <table class="table table-striped">
-         <thead>
-            <tr>
-               <th scope="col">#</th>
-               <th scope="col">Nombre</th>
-               <th scope="col">Apellidos</th>
-               <th scope="col">Fecha de Creación</th>
-               <th scope="col">Email</th>
-            </tr>
-         </thead>
-         <tbody *ngIf="clients">
-            <tr *ngFor="let tempClient of clients">
-               <th scope="row">{{ tempClient.id }}</th>
-               <td>{{ tempClient.names }}</td>
-               <td>{{ tempClient.lastnames }}</td>
-               <td>{{ tempClient.createAt }}</td>
-               <td>{{ tempClient.email }}</td>
-            </tr>
-         </tbody>
-      </table>
+      <div class="table-responsive">
+         <table *ngIf="clients" class="table table-striped">
+            <thead>
+               <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellidos</th>
+                  <th scope="col">Fecha de Creación</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Acciones</th>
+               </tr>
+            </thead>
+            <tbody *ngIf="clients.length > 0">
+               <tr *ngFor="let tempClient of clients; index as i">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td style="min-width: 120px">{{ tempClient.names }}</td>
+                  <td style="min-width: 120px">{{ tempClient.lastnames }}</td>
+                  <td style="min-width: 150px">{{ tempClient.createAt }}</td>
+                  <td>{{ tempClient.email }}</td>
+                  <td>
+                     <div style="min-width: 200px">
+                        <button
+                           type="button"
+                           name="button"
+                           class="btn btn-warning"
+                           [routerLink]="['/clients/edit/', tempClient.id]"
+                        >
+                           Editar
+                        </button>
+                        <button
+                           type="button"
+                           name="button"
+                           class="ml-2 btn btn-danger"
+                           (click)="delete(tempClient)"
+                        >
+                           Eliminar
+                        </button>
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <div *ngIf="clients?.length === 0" class="alert alert-warning" role="alert">
+            No disponen de ningun cliente
+         </div>
+      </div>
    </div>
 </div>
