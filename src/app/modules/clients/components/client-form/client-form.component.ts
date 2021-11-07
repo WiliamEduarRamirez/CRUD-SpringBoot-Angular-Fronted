@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from '../../../../shared/models/client';
+import { ClientService } from '../../../../core/services/client.service';
+import { Router } from '@angular/router';
 
 @Component({
    selector: 'app-client-form',
@@ -8,12 +10,14 @@ import { Client } from '../../../../shared/models/client';
 export class ClientFormComponent implements OnInit {
    client: Client = new Client();
    title = 'Crear Cliente';
-   constructor() {}
+   constructor(private clientService: ClientService, private router: Router) {}
 
    ngOnInit(): void {}
 
    create(): void {
-      console.log('entra aqui');
-      console.log(this.client);
+      this.clientService.create(this.client).subscribe((response) => {
+         console.log(response);
+         this.router.navigate(['/clients']);
+      });
    }
 }
