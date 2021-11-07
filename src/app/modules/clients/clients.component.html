@@ -1,0 +1,29 @@
+<div class="my-3 text-left">
+   <button [routerLink]="['/clients/create']" type="button" class="btn btn-primary">
+      Agregar cliente
+   </button>
+</div>
+<div class="card">
+   <div class="card-body">
+      <table class="table table-striped">
+         <thead>
+            <tr>
+               <th scope="col">#</th>
+               <th scope="col">Nombre</th>
+               <th scope="col">Apellidos</th>
+               <th scope="col">Fecha de Creación</th>
+               <th scope="col">Email</th>
+            </tr>
+         </thead>
+         <tbody *ngIf="clients">
+            <tr *ngFor="let tempClient of clients">
+               <th scope="row">{{ tempClient.id }}</th>
+               <td>{{ tempClient.names }}</td>
+               <td>{{ tempClient.lastnames }}</td>
+               <td>{{ tempClient.createAt }}</td>
+               <td>{{ tempClient.email }}</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>

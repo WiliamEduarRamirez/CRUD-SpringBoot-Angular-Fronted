@@ -1,0 +1,48 @@
+<div class="my-3 text-left">
+   <button [routerLink]="['/clients']" type="button" class="btn btn-success">Regresar</button>
+</div>
+<div class="card">
+   <div class="card-body">
+      <div class="my-3 text-center">
+         <h4>
+            {{ title }}
+         </h4>
+      </div>
+      <form (ngSubmit)="create()">
+         <div class="form-row">
+            <div class="form-group col-md-6">
+               <label for="names">Nombres</label>
+               <input
+                  type="text"
+                  name="names"
+                  class="form-control"
+                  id="names"
+                  [(ngModel)]="client.names"
+               />
+            </div>
+            <div class="form-group col-md-6">
+               <label for="lastnames">Apellidos</label>
+               <input
+                  type="text"
+                  name="lastnames"
+                  class="form-control"
+                  id="lastnames"
+                  [(ngModel)]="client.lastnames"
+               />
+            </div>
+         </div>
+         <div class="form-group">
+            <label for="email">Email</label>
+            <input
+               type="email"
+               class="form-control"
+               id="email"
+               placeholder="Email"
+               name="email"
+               [(ngModel)]="client.email"
+            />
+         </div>
+         <button type="submit" class="btn btn-primary">Agregar Cliente</button>
+      </form>
+   </div>
+</div>
